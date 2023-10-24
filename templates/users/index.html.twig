@@ -6,13 +6,23 @@
     <script type="text/javascript">
 		$(document).ready(function() {
 			$("button").click(function() {
-				let url = "https://randomuser.me/api/?results=5000";
+				let url = "https://randomuser.me/api/?results=5";
 				
 				$.ajax({
 					url: url,
 					method: 'get',
 					success: function(data){
-						console.log(data);
+						rez = data.results;
+						console.log(rez);
+					//	location.assign("/import");
+						$.ajax({
+							url: "/import",
+							method: 'get',
+							data: { rez },
+							success: function(resp){
+								console.log('resp');
+							}
+						});
 					}
 				});
 				
